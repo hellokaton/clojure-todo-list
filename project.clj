@@ -6,7 +6,8 @@
   :repl-options {:init-ns todo-list.core}
   :dependencies [[org.clojure/clojure "1.9.0"]
                  [ring "1.7.1"]
-                 [ring/ring-jetty-adapter "1.7.1"]]
+                 [ring/ring-jetty-adapter "1.7.1"]
+                 [compojure "1.6.1"]]
 
   :main todo-list.core
   :profiles {:dev {:main todo-list.core/-dev-main}})
