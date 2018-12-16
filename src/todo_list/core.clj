@@ -1,7 +1,6 @@
 (ns todo-list.core
   (:require [ring.adapter.jetty :as jetty]))
 
-这是一个使用 clojure + ring 的 todolist 程序
 (defn welcome
   "这是欢迎页"
   [request]
