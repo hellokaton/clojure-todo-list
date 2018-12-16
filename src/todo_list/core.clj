@@ -31,6 +31,7 @@
      :body    (str "<h1>你好 " name "，你终于访问这个 URL 了！</h1>")
      :headers {"Content-Type" "text/html;charset=UTF-8"}}))
 
+; 这是一个 map，存储字符串操作符对应的形式
 (def operands {"+" + "-" - "*" * ":" /})
 
 (defn calculator
