@@ -7,14 +7,22 @@
 (defn welcome
   "这是欢迎页"
   [request]
-    {:status 200
-     :body "<h1>你好，这是欢迎页面！</h1>"
-     :headers {"Content-Type" "text/html;charset=UTF-8"}})
+  {:status 200
+   :body "<h1>你好，这是欢迎页面！</h1>"
+   :headers {"Content-Type" "text/html;charset=UTF-8"}})
+
+(defn about
+  "这是关于页面"
+  [request]
+  {:status 200
+   :body "我是一个写代码的，只有我享受这无聊的事！"
+   :headers {}})
 
 (defroutes app
   (GET "/" [] welcome)
-  (not-found "<h1>This is not the page you are looking for</h1>
-              <p>Sorry, the page you requested was not found!</p>"))
+  (GET "/about" [] about)
+  (not-found "<h1>没有找到你要请求的资源</h1>
+              <p>这是一篇无人知晓的荒地！</p>"))
 
 (defn -main
   "一个 Ring 的 Hello World 程序"
