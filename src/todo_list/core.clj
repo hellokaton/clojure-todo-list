@@ -1,5 +1,6 @@
 (ns todo-list.core
-  (:require [ring.adapter.jetty :as jetty]))
+  (:require [ring.adapter.jetty :as jetty]
+            [ring.middleware.reload :refer [wrap-reload]]))
 
 (defn welcome
   "这是欢迎页"
@@ -18,3 +19,9 @@
   [port]
   (jetty/run-jetty welcome
     {:port (Integer. port)}))
+
+(defn -dev-main
+  "一个 Ring 的 Hello World 程序"
+  [port]
+  (jetty/run-jetty (wrap-reload #'welcome)
+                   {:port (Integer. port)}))
