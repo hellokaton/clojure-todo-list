@@ -5,7 +5,8 @@ The todo-list application that used clojure + ring
 ## Usage
 
 ```shell
-lein run 3000
+$ lein dep
+$ lein run 3000
 ```
 
 ## License
