@@ -31,10 +31,28 @@
      :body    (str "<h1>你好 " name "，你终于访问这个 URL 了！</h1>")
      :headers {"Content-Type" "text/html;charset=UTF-8"}}))
 
+(def operands {"+" + "-" - "*" * ":" /})
+
+(defn calculator
+  "一个计算器程序"
+  [request]
+  (let [x (Integer. (get-in request [:route-params :x]))
+        y (Integer. (get-in request [:route-params :y]))
+        op (get-in request [:route-params :op])
+        f (get operands op)]
+    (if f
+      {:status  200
+       :body    (str "calculator result: " (f x y))
+       :headers {}}
+      {:status  404
+       :body    "Sorry, unknown operator.  I only recognise + - * : (: is for division)"
+       :headers {}})))
+
 (defroutes app
   (GET "/" [] welcome)
   (GET "/about" [] about)
   (GET "/hello/:name" [] hello)
+  (GET "/calculator/:op/:x/:y" [] calculator)
   (GET "/request-info" [] handle-dump)
   (not-found "<h1>有找到你要请求的资源</h1>
     <p>这是一篇无人知晓的荒地！</p>"))
