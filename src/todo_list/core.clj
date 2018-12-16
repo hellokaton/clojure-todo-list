@@ -17,7 +17,7 @@
   [_]
   {:status  200
    :body    "我是一个写代码的，只有我享受这无聊的事！"
-   :headers {}})
+   :headers {"Content-Type" "text/html;charset=UTF-8"}})
 
 (defn hello
   "一个 restful 风格的路由"
