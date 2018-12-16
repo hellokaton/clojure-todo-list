@@ -2,7 +2,8 @@
   (:require [ring.adapter.jetty :as jetty]
             [ring.middleware.reload :refer [wrap-reload]]
             [compojure.core :refer [defroutes GET]]
-            [compojure.route :refer [not-found]]))
+            [compojure.route :refer [not-found]]
+            [ring.handler.dump :refer [handle-dump]]))
 
 (defn welcome
   "这是欢迎页"
@@ -18,17 +19,19 @@
    :body "我是一个写代码的，只有我享受这无聊的事！"
    :headers {}})
 
-(defn request-info
-  "查看请求中包含的信息，对调试很有用"
+(defn hello
+  "一个 restful 风格的路由"
   [request]
-  {:status 200
-   :body (pr-str request)
-   :headers {}})
+  (let [name (get-in request [:route-params :name])]
+    {:status 200
+     :body (str "你好 " name "，你终于访问这个 URL 了！")
+     :headers {"Content-Type" "text/html;charset=UTF-8"}}))
 
 (defroutes app
   (GET "/" [] welcome)
   (GET "/about" [] about)
-  (GET "/request-info" [] request-info)
+  (GET "/hello/:name" [] hello)
+  (GET "/request-info" [] handle-dump)
   (not-found "<h1>没有找到你要请求的资源</h1>
               <p>这是一篇无人知晓的荒地！</p>"))
 
