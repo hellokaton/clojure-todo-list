@@ -10,4 +10,6 @@
                  [compojure "1.6.1"]]
 
   :main todo-list.core
+  :min-lein-version "2.8.3"
+  :uberjar-name "todo-list.jar"
   :profiles {:dev {:main todo-list.core/-dev-main}})
