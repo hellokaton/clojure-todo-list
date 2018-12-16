@@ -18,9 +18,17 @@
    :body "我是一个写代码的，只有我享受这无聊的事！"
    :headers {}})
 
+(defn request-info
+  "查看请求中包含的信息，对调试很有用"
+  [request]
+  {:status 200
+   :body (pr-str request)
+   :headers {}})
+
 (defroutes app
   (GET "/" [] welcome)
   (GET "/about" [] about)
+  (GET "/request-info" [] request-info)
   (not-found "<h1>没有找到你要请求的资源</h1>
               <p>这是一篇无人知晓的荒地！</p>"))
 
